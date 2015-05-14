@@ -45,7 +45,11 @@
         </nav>
         <div class="container">
             <div class="col-lg-2">
-                <?=$this->categories?>
+                <?php
+                if(is_array($this->categories)):
+                    echo $this->htmlList($this->categories);
+                endif;
+                ?>
             </div>
             <div class="col-lg-10">
                 <?php echo $this->content; ?>

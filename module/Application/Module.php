@@ -25,10 +25,15 @@ class Module
     public function onDispatch(MvcEvent $e)
     {
         $vm = $e->getViewModel();
-        $vm->setVariable("categories", "CATEGORY LIST");
+        
+        //m4ex1
+        $app = $e->getApplication();
+        $categories = $app->getServiceManager()->get("categories");
+        
+        $vm->setVariable("categories", $categories);
     }
 
-    public function getConfig()
+        public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
