@@ -1,3 +1,10 @@
-<strong>Module:</strong>        Market &raquo;
-<strong>Controller:</strong>    Skeleton &raquo;
-<strong>Action:</strong>        index
+<h1>Hi Index Market</h1>
+
+
+<?php
+if(is_array($this->messages)):
+    ?>
+    <div class="alert alert-info">
+        <?=$this->htmllist( $this->messages ); ?>
+    </div><?php
+endif;   
