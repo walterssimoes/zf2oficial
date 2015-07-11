@@ -8,7 +8,7 @@ use Zend\View\Model\ViewModel;
 class ViewController extends AbstractActionController{
     public function indexAction()
     {
-        $category = $this->params()->fromQuery("category");
+        $category = $this->params()->fromRoute("category");
         
         $array = ["category" => $category];
         
@@ -17,7 +17,7 @@ class ViewController extends AbstractActionController{
     
     public function itemAction()
     {
-        $itemId = $this->params()->fromQuery("itemId");
+        $itemId = $this->params()->fromRoute("itemId");
         
         if(empty($itemId)){
             $this->flashMessenger()->addMessage("Item not found!");
