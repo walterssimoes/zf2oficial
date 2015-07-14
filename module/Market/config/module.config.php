@@ -44,7 +44,7 @@ return array(
                             'route' => '/view',
                             'defaults' => array(
                                 'controller' => 'market-view-controller',
-                                'action' => 'view'
+                                'action' => 'index'
                             )
                         ),
                         
@@ -52,7 +52,7 @@ return array(
                         
                         'child_routes' => array(
                             'index' => array(
-                                'type' => 'segment',
+                                'type' => 'Segment',
                                 'options' => array(
                                     'route' => '/main[/:category]',
                                     'defaults' => array(
