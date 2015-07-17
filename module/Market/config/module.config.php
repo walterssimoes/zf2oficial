@@ -38,6 +38,17 @@ return array(
                 'may_terminate' =>true,
                 
                 'child_routes' => array(
+                    'slash' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/',
+                            'defaults' => array(
+                                'controller' => 'market-index-controller',
+                                'action'     => 'index'
+                            )
+                        )
+                    ),
+                    
                     'view' => array(
                         'type' => 'Literal',
                         'options' => array(
@@ -51,10 +62,21 @@ return array(
                         'may_terminate' => true,
                         
                         'child_routes' => array(
+                            'slash' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/',
+                                    'defaults' => array(
+                                        'controller' => 'market-view-controller',
+                                        'action' => 'index'
+                                    )
+                                )
+                            ),
+                            
                             'index' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/main[/:category]',
+                                    'route' => '/main[/:category][/]',
                                     'defaults' => array(
                                         'action'=>'index'
                                     )
@@ -64,7 +86,7 @@ return array(
                             'item' => array(
                                 'type' => 'segment',
                                 'options' => array(
-                                    'route' => '/item[/:itemId]',
+                                    'route' => '/item[/:itemId][/]',
                                     'defaults' => array(
                                         'action' => 'item'
                                     )
@@ -77,9 +99,9 @@ return array(
                     ),
                     
                     'market-post' => array(
-                        'type' => 'Literal',
+                        'type' => 'Segment',
                         'options' => array(
-                            'route' => '/post',
+                            'route' => '/post[/]',
                             'options'=> array(
                                 'defaults' =>array(
                                     'controller' => 'market-post-controller',
@@ -90,49 +112,11 @@ return array(
                     )
                 )
             )
-            
-            
-             
-            
-//            'market' => array(
-//                'type'    => 'Literal',
-//                'options' => array(
-//                    // Change this to something specific to your module
-//                    'route'    => '/market',
-//                    'defaults' => array(
-//                        // Change this value to reflect the namespace in which
-//                        // the controllers for your module are found
-//                        //'__NAMESPACE__' => 'Market\Controller',
-//                        'controller'    => 'market-index-controller',
-//                        'action'        => 'index',
-//                    ),
-//                ),
-//                'may_terminate' => true,
-//                'child_routes' => array(
-//                    // This route is a sane default when developing a module;
-//                    // as you solidify the routes for your module, however,
-//                    // you may want to remove it and replace it with more
-//                    // specific routes.
-//                    'default' => array(
-//                        'type'    => 'Segment',
-//                        'options' => array(
-//                            'route'    => '/[:controller[/:action]]',
-//                            'constraints' => array(
-//                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
-//                            ),
-//                            'defaults' => array(
-//                            ),
-//                        ),
-//                    ),
-//                ),
-//            ),
-            
-        ),
+        )
     ),
     'view_manager' => array(
         'template_path_stack' => array(
             'Market' => __DIR__ . '/../view',
-        ),
-    ),
+        )
+    )
 );
