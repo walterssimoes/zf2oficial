@@ -47,7 +47,8 @@
             <div class="col-lg-2">
                 <?php
                 if(is_array($this->categories)):
-                    echo $this->htmlList($this->categories);
+                    //echo $this->htmlList($this->categories);
+                    echo $this->leftLinks($this->categories, $this->basePath()."/market/view/main");
                 endif;
                 ?>
             </div>

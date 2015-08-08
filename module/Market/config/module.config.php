@@ -98,16 +98,16 @@ return array(
                         )
                     ),
                     
+                    
                     'market-post' => array(
                         'type' => 'Segment',
                         'options' => array(
                             'route' => '/post[/]',
-                            'options'=> array(
-                                'defaults' =>array(
-                                    'controller' => 'market-post-controller',
-                                    'action' => 'index'
-                                )
+                            'defaults' =>array(
+                                'controller' => 'market-post-controller',
+                                'action' => 'index'
                             )
+                            
                         )
                     )
                 )
