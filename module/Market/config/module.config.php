@@ -6,12 +6,13 @@ return array(
             'market-view-controller'  => 'Market\Controller\ViewController'
         ),
         'factories' => array(
-            'market-post-controller' => 'Market\Factory\PostControllerFactory'
+            'market-post-controller' => 'Market\Factory\PostControllerFactory'            
         ),
         'aliases' => array(
             'alt' => 'market-view-controller'
         )
     ),
+    
     'router' => array(
         'routes' => array(
             'home' => array(
@@ -114,6 +115,13 @@ return array(
             )
         )
     ),
+    
+    'service_manager' => array(
+        'factories' => array(
+            'market-post-form' => 'Market\Factory\PostFormFactory'
+        )
+    ),
+    
     'view_manager' => array(
         'template_path_stack' => array(
             'Market' => __DIR__ . '/../view',
