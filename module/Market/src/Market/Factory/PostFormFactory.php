@@ -11,10 +11,8 @@ use Market\Form\PostForm;
 class PostFormFactory implements FactoryInterface
 {
     
-    public function createService(ServiceLocatorInterface $controllerManager)
+    public function createService(ServiceLocatorInterface $sm)
     {
-        $services = $controllerManager->getServiceLocator();
-        $sm = $services->get('ServiceManager');
         $categories = $sm->get('categories');
         
         $form = new PostForm();
@@ -22,5 +20,6 @@ class PostFormFactory implements FactoryInterface
         $form->buildForm();
         
         return $form;
+        
     }
 }
