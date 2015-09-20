@@ -118,7 +118,17 @@ return array(
     
     'service_manager' => array(
         'factories' => array(
-            'market-post-form' => 'Market\Factory\PostFormFactory'
+            'market-post-form' => 'Market\Factory\PostFormFactory',
+            'market-post-filter' => 'Market\Factory\PostFilterFactory'
+        ),
+        
+        'services' => array(
+            'date-expires' => [
+                1  => "01", 
+                7  => "07", 
+                15 => "15", 
+                21 => "21", 
+                28 => "28"]
         )
     ),
     

@@ -13,11 +13,15 @@ class PostFormFactory implements FactoryInterface
     
     public function createService(ServiceLocatorInterface $sm)
     {
-        $categories = $sm->get('categories');
+        $categories   = $sm->get('categories');
+        $date_expires = $sm->get('date-expires');
+        $filters      = $sm->get('market-post-filter');
         
         $form = new PostForm();
         $form->setCategories($categories);
+        $form->setDateExpires($date_expires);
         $form->buildForm();
+        $form->setInputFilter($filters);
         
         return $form;
         

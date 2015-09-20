@@ -20,8 +20,7 @@ class IndexController extends AbstractActionController
             $messages = $this->flashMessenger()->getMessages();
         }
             
-        //return array("messages" => $messages);
-        return array("messages" => "Welcome to the Online Market");
+        return array("messages" => $messages);
     }
 
     public function fooAction()
