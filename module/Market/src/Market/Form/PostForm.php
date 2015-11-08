@@ -8,6 +8,7 @@
 
 namespace Market\Form;
 
+use Zend\Form\Form;
 use Zend\Form\Element\Select;
 use Zend\Form\Element\Text;
 use Zend\Form\Element\Number;
@@ -15,9 +16,10 @@ use Zend\Form\Element\Radio;
 use Zend\Form\Element\Textarea;
 use Zend\Form\Element\Url;
 use Zend\Form\Element\Email;
-use Zend\Form\Element\Captcha;
 use Zend\Form\Element\Submit;
-use Zend\Form\Form;
+use Zend\Form\Element\Captcha;
+use Zend\Captcha\Image as ImageCaptcha;
+
 /**
  * Description of PostForm
  *
@@ -27,10 +29,17 @@ class PostForm extends Form
 {
     private $categories;
     private $date_expires;
-    
+    private $captcha_options;
+
+
     public function setCategories($categories)
     {
         $this->categories = $categories;
+    }
+
+    public function setCaptchaOptions($options)
+    {
+        $this->captcha_options = $options;
     }
     
     public function setDateExpires($date_expires)
@@ -109,10 +118,15 @@ class PostForm extends Form
         $delete_code = new Number("delete_code");
         $delete_code->setLabel("Delete Code");
         
-        $dumb = new \Zend\Captcha\Dumb();
-        $captcha = new Captcha("captcha");
-        $captcha->setLabel("¬¬ You are human?...")
-                ->setCaptcha($dumb);
+        $captcha = new Captcha('captcha');
+        
+        $captchaAdapter = new ImageCaptcha();
+        $captchaAdapter->setWordlen(4)
+                       ->setOptions($this->captcha_options);
+        
+        $captcha->setCaptcha($captchaAdapter)
+                ->setLabel('Help us to prevent SPAM!')
+                ->setAttribute('title', 'Help to prevent SPAM');
         
         $submit = new Submit("submit");
         $submit->setAttribute('value', 'Send');
@@ -130,7 +144,7 @@ class PostForm extends Form
              ->add($city_code)   
              ->add($country)   
              ->add($delete_code)   
-             ->add($captcha)   
+             ->add($captcha)
              ->add($submit);
     }
 }

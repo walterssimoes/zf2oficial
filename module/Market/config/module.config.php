@@ -128,7 +128,19 @@ return array(
                 7  => "07", 
                 15 => "15", 
                 21 => "21", 
-                28 => "28"]
+                28 => "28"],
+            
+            'market-captcha-options' => array(
+                'font' =>  __DIR__ . '/../../../data/fonts/DejaVuSans.ttf',
+                'imgDir'    => $_SERVER['DOCUMENT_ROOT'] . '/img/captcha',
+                'imgUrl'    => '/img/captcha',
+                'fontSize' => 24,
+                'height' => 50,
+                'width' => 100,
+                'imgAlt' => 'Captcha',
+                'dotNoiseLevel' => 30,
+                'lineNoiseLevel' => 6
+            )
         )
     ),
     
