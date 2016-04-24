@@ -6,6 +6,8 @@ use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
 class ViewController extends AbstractActionController{
+    use ListingsTableTrait;
+    
     public function indexAction()
     {
         $category = $this->params()->fromRoute("category");
