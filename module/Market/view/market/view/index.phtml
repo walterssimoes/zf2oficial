@@ -1,1 +1,32 @@
 <h1><?php echo $this->escapeHtml($this->category); ?></h1>
+
+
+<?php
+if($this->listings instanceof Zend\Db\ResultSet\ResultSet):
+    ?>
+    <table>
+        <tr>
+            <th>Item</th>
+            <th>Price</th>
+            <th>&nbsp;</th>
+            <th>Posted</th>
+        </tr>
+        <?php
+            while($item = $this->listings->current()):
+                ?>
+                <tr>
+                    <td><?=$this->escapehtml($item['title'])?></td>
+                    <td><?=$this->escapehtml((float)$item['price'])?></td>
+                    <td>&nbsp;</td>
+                    <td><?=$this->escapehtml($item['date_created'])?></td>
+                </tr>
+                <?php
+                $this->list->next();
+            endwhile;
+        ?>
+    </table>    
+    <?php
+else:
+    Zend\Debug\Debug::dump($this->listings);
+endif;
+?>

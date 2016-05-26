@@ -5,12 +5,17 @@ namespace Market\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 
-class ViewController extends AbstractActionController{
+class ViewController extends AbstractActionController
+{
+    use listingsTableTrait;
+    
     public function indexAction()
     {
         $category = $this->params()->fromRoute("category");
         
-        $array = ["category" => $category];
+        $listings = $this->listingsTable->getListingsByCategory($category);
+        
+        $array = ["category" => $category, "listings" => $listings];
         
         return new ViewModel($array);
     }
