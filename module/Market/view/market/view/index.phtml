@@ -14,14 +14,16 @@ if($this->listings instanceof Zend\Db\ResultSet\ResultSet):
         <?php
             while($item = $this->listings->current()):
                 ?>
-                <tr>
-                    <td><?=$this->escapehtml($item['title'])?></td>
+        <tr style="background-color: <?=$this->cycle(['#bcbec0', '#808285'])->next()?>">
+                    <td>
+                        <a href="/market/view/item/<?=(int)$item->listings_id;?>"><?=$this->escapehtml($item['title'])?></a>
+                    </td>
                     <td><?=$this->escapehtml((float)$item['price'])?></td>
                     <td>&nbsp;</td>
                     <td><?=$this->escapehtml($item['date_created'])?></td>
                 </tr>
                 <?php
-                $this->list->next();
+                $this->listings->next();
             endwhile;
         ?>
     </table>    

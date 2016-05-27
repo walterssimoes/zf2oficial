@@ -10,17 +10,22 @@
 namespace Market\Controller;
 
 use Zend\Mvc\Controller\AbstractActionController;
+use Zend\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
+    use ListingsTableTrait;
+    
     public function indexAction()
     {
         $messages = NULL;
         if($this->flashMessenger()->hasMessages()){
             $messages = $this->flashMessenger()->getMessages();
         }
+        
+        $itemRecent = $this->listingsTable->getLatestListing();
             
-        return array("messages" => $messages);
+        return new ViewModel(array("messages" => $messages, "item" => $itemRecent));
     }
 
     public function fooAction()
